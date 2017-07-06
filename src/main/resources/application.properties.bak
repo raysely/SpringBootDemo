@@ -1,0 +1,8 @@
+spring.datasource.url:jdbc:mysql://127.0.0.1:3360/
+spring.datasource.username:root
+spring.datasource.password:123456
+spring.datasource.driver-class-name:com.mysql.jdbc
+--改变默认端口
+server.port=8081
+--改变服务根目录。后续方问如：http://localhost:8081/member/hello
+server.context-path:/member
