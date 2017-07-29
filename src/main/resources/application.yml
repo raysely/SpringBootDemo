@@ -1,12 +1,12 @@
-server:
-  port: 8080
-  context-path: /member
-#会员等级
-level: A
-age: 20
-#在配置中使用当前配置
-content: "level ${level}, age ${age}"
-
-member:
-  level: A
-  age: 20
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/memberdb
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

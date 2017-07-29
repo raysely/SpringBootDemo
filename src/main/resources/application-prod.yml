@@ -1,0 +1,13 @@
+#模拟生产环境的配置
+server:
+  port: 8081
+  context-path: /member
+#会员等级
+level: A
+age: 20
+#在配置中使用当前配置
+content: "level ${level}, age ${age}"
+
+member:
+  level: C
+  age: 20
