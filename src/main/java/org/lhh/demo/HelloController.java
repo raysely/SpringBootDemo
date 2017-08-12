@@ -26,9 +26,9 @@ public class HelloController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String say() {
-        return memberProp.getLevel();
+        //return memberProp.getLevel();
         //return content;
-        //return "member level is :" + level + " and age is " + age;
+        return "member level is :" + level + " and age is " + age;
         //return "Hello Spring Boot!";
     }
 }

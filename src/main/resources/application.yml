@@ -2,8 +2,8 @@ server:
   port: 8080
   context-path: /member
 #会员等级
-level: A
-age: 20
+level: B
+age: 23
 #在配置中使用当前配置
 content: "level ${level}, age ${age}"
 
