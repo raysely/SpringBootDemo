@@ -1,8 +1,9 @@
-package org.lhh.demo;
+package org.lhh.demo.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 /**
  * Created by raysely on 17/7/29.
@@ -22,6 +23,7 @@ public class Member {
 
     private String name;
 
+    @Min(value = 3, message = "不满三周岁儿童不能添加。")
     private Integer age;
 
     private String level;
@@ -57,5 +59,15 @@ public class Member {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", level='" + level + '\'' +
+                '}';
     }
 }

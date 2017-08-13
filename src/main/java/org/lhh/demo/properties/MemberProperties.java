@@ -1,4 +1,4 @@
-package org.lhh.demo;
+package org.lhh.demo.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

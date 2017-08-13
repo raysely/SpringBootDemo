@@ -1,5 +1,6 @@
-package org.lhh.demo;
+package org.lhh.demo.dao;
 
+import org.lhh.demo.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
