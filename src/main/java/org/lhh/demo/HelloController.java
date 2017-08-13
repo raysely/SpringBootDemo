@@ -35,7 +35,7 @@ public class HelloController {
     //@RequestMapping(value = "/{id}/say", method = RequestMethod.GET) //@PathVariable("id") Integer id
     //@RequestMapping(value = "/say", method = RequestMethod.GET)  //@RequestParam("mid") Integer id   mid要等同于url上的参数名
     @GetMapping("/say")  //等同于 @GetMapping(value = "/say")
-    //@PostMapping("/say")
+    @PostMapping("/say")
     public String say(@RequestParam(value = "mid", required = false, defaultValue = "0") Integer id) {
         //return memberProp.getLevel();
         //return content;
