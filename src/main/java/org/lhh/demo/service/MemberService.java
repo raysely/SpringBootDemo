@@ -22,7 +22,11 @@ public class MemberService {
 
     }
 
-    public void getAge(final Integer id) throws Exception {
+    /**
+     *
+     * @param id
+     */
+    public void getAge(final Integer id) {
         final Member member = memberDao.findOne(id);
         final Integer age = member.getAge();
         if (age < 10) {
@@ -32,5 +36,14 @@ public class MemberService {
             //返回"你可能在上初中" code=101
             throw new MemberException(ResultEnum.MIDDLE_SCHOOL);
         }
+    }
+
+    /**
+     * 通过id查询一个会员的信息.
+     * @param id 会员ID
+     * @return 会员实体
+     */
+    public Member findOne(final Integer id) {
+        return memberDao.findOne(id);
     }
 }

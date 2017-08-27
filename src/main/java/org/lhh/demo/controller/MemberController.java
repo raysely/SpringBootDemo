@@ -5,6 +5,8 @@ import org.lhh.demo.domain.Member;
 import org.lhh.demo.domain.Result;
 import org.lhh.demo.service.MemberService;
 import org.lhh.demo.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import java.util.List;
 @RestController
 public class MemberController {
 
+    private final static Logger logger = LoggerFactory.getLogger(MemberController.class);
+
     @Autowired
     private IMemberDao memberDao;
 
@@ -31,6 +35,7 @@ public class MemberController {
      */
     @GetMapping(value = "/members")
     public List<Member> memberList() {
+        logger.info("member list...");
         return memberDao.findAll();
     }
 
@@ -86,17 +91,24 @@ public class MemberController {
         return memberDao.findOne(id);
     }
 
-    //更新
+//    //更新
+//    @PutMapping(value = "/members/{id}")
+//    public Member memberUpdate(@PathVariable("id") Integer id,
+//                             @RequestParam("name") String name,
+//                             @RequestParam("level") String level,
+//                             @RequestParam("age") Integer age) {
+//        final Member member = new Member();
+//        member.setId(id);
+//        member.setName(name);
+//        member.setLevel(level);
+//        member.setAge(age);
+//        return memberDao.save(member);
+//    }
+
+    //更新（客户端传入完整实体资源）
     @PutMapping(value = "/members/{id}")
-    public Member memberUpdate(@PathVariable("id") Integer id,
-                             @RequestParam("name") String name,
-                             @RequestParam("level") String level,
-                             @RequestParam("age") Integer age) {
-        final Member member = new Member();
-        member.setId(id);
-        member.setName(name);
-        member.setLevel(level);
-        member.setAge(age);
+    public Member memberUpdate(@PathVariable("id") Integer id, @RequestBody Member member) {
+        //{id:6, name:'cindy', age:33, level:'A'}
         return memberDao.save(member);
     }
 
@@ -113,7 +125,7 @@ public class MemberController {
     }
 
     @GetMapping(value = "/members/getAge/{id}")
-    public void getAge(@PathVariable("id") Integer id) throws Exception {
+    public void getAge(@PathVariable("id") Integer id) {
         memberService.getAge(id);
     }
 }
