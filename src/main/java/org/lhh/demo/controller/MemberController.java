@@ -2,10 +2,14 @@ package org.lhh.demo.controller;
 
 import org.lhh.demo.dao.IMemberDao;
 import org.lhh.demo.domain.Member;
+import org.lhh.demo.domain.Result;
+import org.lhh.demo.service.MemberService;
+import org.lhh.demo.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.spi.ResolveResult;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -17,6 +21,9 @@ public class MemberController {
 
     @Autowired
     private IMemberDao memberDao;
+
+    @Autowired
+    private MemberService memberService;
 
     /**
      * 获取所有会员列表.
@@ -49,12 +56,28 @@ public class MemberController {
      * @return member
      */
     @PostMapping(value = "/members")
-    public Member memberAdd(@Valid final Member member, BindingResult bindingResult) {
+    public Result<Member> memberAdd(@Valid final Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            //System.out.println(bindingResult.getFieldError().getDefaultMessage());
             return null;
+
+//            Result result = new Result();
+//            result.setCode(1);
+//            result.setMsg(bindingResult.getFieldError().getDefaultMessage());
+//            return result;
+            //return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
-        return memberDao.save(member);
+
+
+        //return memberDao.save(member);
+
+//        Result result = new Result();
+//        result.setCode(0);
+//        result.setMsg("成功");
+//        result.setData(memberDao.save(member));
+//        return result;
+
+        return ResultUtil.success(memberDao.save(member));
     }
 
     //查询一个会员
@@ -87,5 +110,10 @@ public class MemberController {
     @GetMapping(value = "/members/age/{age}")
     public List<Member> memberListByAge(@PathVariable("age") Integer age) {
         return memberDao.findByAge(age);
+    }
+
+    @GetMapping(value = "/members/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception {
+        memberService.getAge(id);
     }
 }

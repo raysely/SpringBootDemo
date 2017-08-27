@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by raysely on 17/7/29.
@@ -23,8 +24,13 @@ public class Member {
 
     private String name;
 
-    @Min(value = 3, message = "不满三周岁儿童不能添加。")
+    //@Min(value = 3, message = "不满三周岁儿童不能添加。")
+    //    @NotNull
+    //    @Max()
+    //    @Length()
+    @NotNull(message = "年龄必传")
     private Integer age;
+
 
     private String level;
 
